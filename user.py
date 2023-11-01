@@ -17,14 +17,14 @@ class User:
     def getUserByEmail(self, email_adress):
         user = UserDAO().getUserByEmail(email_adress)
         if user:
-            return jsonify(user)
+            return jsonify(user), 200
         else:
             return jsonify({"message": "User not found"}), 404
-        
+    
     def getUserById(self, user_id):
         user = UserDAO().getUserById(user_id)
         if user:
-            return jsonify(user)
+            return jsonify(user), 200
         else:
             return jsonify({"message": "User not found"}), 404
 
