@@ -11,15 +11,22 @@ class MessageDao:
         cursor.execute(query, data)
         conn.commit()
         conn.close()
+        return True
 
     def deleteMessage(self, m_id):
         query = "UPDATE Message SET is_deleted = 1 WHERE m_id = %s"
         conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute(query, (m_id,))
+        affected_rows = cursor.rowcount 
         conn.commit()
         conn.close()
-        return True
+
+        if affected_rows > 0:
+            return True  
+        else:
+            return False  
+
 
     def getMessageById(self, m_id):
         query = "SELECT * FROM Message WHERE m_id = %s"

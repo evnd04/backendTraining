@@ -17,7 +17,7 @@ class Message:
         if success:
             return jsonify({"message": "Message deleted successfully"}), 200
         else:
-            return jsonify({"message": "Message not found or failed to delete"}), 404
+            return jsonify({"message": "Message failed to delete"}), 404
 
     def getMessageById(self, m_id):
         Message = MessageDao().getMessageById(m_id)
